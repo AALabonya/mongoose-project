@@ -7,5 +7,10 @@ const createStudent = async (req: Request, res: Response) => {
   //will call service func to send this data
 
   const result = await StudentService.createStudentIntoDB(student);
+
   //send response
+  res.status(200).json({
+    success: true,
+    message: 'Student is created successfully',
+  });
 };
