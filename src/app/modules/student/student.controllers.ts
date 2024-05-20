@@ -1,7 +1,5 @@
 import { Request, Response } from 'express';
 import { StudentService } from './student.service';
-import { log } from 'console';
-
 const createStudent = async (req: Request, res: Response) => {
   try {
     const student = req.body;
