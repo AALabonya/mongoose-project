@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { StudentService } from './student.service';
-import { Student } from './student.interfaces';
+
 const createStudent = async (req: Request, res: Response) => {
   try {
     const { student: studentData } = req.body.student;
