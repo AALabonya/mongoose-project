@@ -17,7 +17,7 @@ const getAllAcademicsSemesterIntoBD = async () => {
 };
 
 const getSingleAcademicsSemesterIntoBD = async (id: string) => {
-  const result = await academicSemester.aggregate([{ $match: { id } }]);
+  const result = await academicSemester.findById(id);
   return result;
 };
 

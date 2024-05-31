@@ -28,9 +28,10 @@ const getAllAcademicsSemester = catchAsync(async (req, res) => {
 });
 
 const getSingleAcademicsSemester = catchAsync(async (req, res) => {
-  const { id } = req.params;
+  const { academicId } = req.params;
+
   const result =
-    await AcademicSemesterServices.getSingleAcademicsSemesterIntoBD(id);
+    await AcademicSemesterServices.getSingleAcademicsSemesterIntoBD(academicId);
 
   sendResponse(res, {
     statusCode: httpStatus.OK,
@@ -39,6 +40,7 @@ const getSingleAcademicsSemester = catchAsync(async (req, res) => {
     data: result,
   });
 });
+
 export const AcademicsSemesterControllers = {
   createAcademicsSemester,
   getAllAcademicsSemester,
