@@ -21,3 +21,11 @@ export type TAcademicSemester = {
   startMonth: TMonths;
   endMonth: TMonths;
 };
+
+//here checking relation
+//semester name --->semester code relation ase kina check korbo
+
+export type TAcademicsSemesterNameCodeMapper = {
+  //typescript object maptype
+  [key: string]: string;
+};
