@@ -1,11 +1,22 @@
-import { StudentModel } from './student.model';
-import { Student } from './student.interfaces';
+import { Student } from './student.model';
 
-const createStudentIntoDB = async (student: Student) => {
-  const result = await StudentModel.create(student);
+const getAllStudentsFromDB = async () => {
+  const result = await Student.find();
   return result;
 };
 
-export const StudentService = {
-  createStudentIntoDB,
+const getSingleStudentFromDB = async (id: string) => {
+  const result = await Student.aggregate([{ $match: { id } }]);
+  return result;
+};
+
+const deleteStudentFromDB = async (id: string) => {
+  const result = await Student.updateOne({ id }, { isDeleted: true });
+  return result;
+};
+
+export const StudentServices = {
+  getAllStudentsFromDB,
+  getSingleStudentFromDB,
+  deleteStudentFromDB,
 };
