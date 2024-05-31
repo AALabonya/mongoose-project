@@ -1,24 +1,24 @@
-import { TAcademicSemesterCode } from './academicSemester.interface';
+import { TAcademicSemester } from './academicSemester.interface';
 import { academicSemester } from './academicSemester.model';
 
-const createAcademicsSemesterIntoBD = async (
-  payload: TAcademicSemesterCode,
-) => {
+const createAcademicsSemesterIntoBD = async (payload: TAcademicSemester) => {
   //here checking relation
   //semester name --->semester code relation ase kina check korbo
 
   type TAcademicsSemesterNameCodeMapper = {
-    Autumn: '01';
-    Summer: '02';
-    Fall: '03';
+    //typescript object maptype
+    [key: string]: string;
   };
 
-  const academicsSemesterNameCodeMapper = {
+  const academicsSemesterNameCodeMapper: TAcademicsSemesterNameCodeMapper = {
     Autumn: '01',
     Summer: '02',
     Fall: '03',
   };
-
+  //here maping chalabo data save korar age if block diye check korbo
+  if (academicsSemesterNameCodeMapper[payload.name] !== payload.code) {
+    throw new Error('Invalid Semester Code');
+  }
   const result = await academicSemester.create(payload);
   return result;
 };
