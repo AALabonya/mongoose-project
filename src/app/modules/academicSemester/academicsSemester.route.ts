@@ -15,6 +15,7 @@ router.post(
   ),
   AcademicsSemesterControllers.createAcademicsSemester,
 );
+
 router.patch(
   '/:academicId',
   validateRequest(

@@ -42,9 +42,11 @@ const getSingleAcademicsSemester = catchAsync(async (req, res) => {
 });
 
 const updateAcademicSemester = catchAsync(async (req, res) => {
-  const { semesterId } = req.params;
+  const { academicId } = req.params;
+  console.log(academicId);
+
   const result = await AcademicSemesterServices.updateAcademicsSemesterIntoBD(
-    semesterId,
+    academicId,
     req.body,
   );
 
