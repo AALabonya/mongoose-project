@@ -1,3 +1,4 @@
+import { match } from 'assert';
 import { academicsSemesterNameCodeMapper } from './academicSemester.constant';
 import { TAcademicSemester } from './academicSemester.interface';
 import { academicSemester } from './academicSemester.model';
@@ -15,7 +16,14 @@ const getAllAcademicsSemesterIntoBD = async () => {
   const result = await academicSemester.find();
   return result;
 };
+
+const getSingleAcademicsSemesterIntoBD = async (id: string) => {
+  const result = await academicSemester.aggregate([{ $match: { id } }]);
+  return result;
+};
+
 export const AcademicSemesterServices = {
   createAcademicsSemesterIntoBD,
   getAllAcademicsSemesterIntoBD,
+  getSingleAcademicsSemesterIntoBD,
 };
