@@ -1,4 +1,3 @@
-import { match } from 'assert';
 import { academicsSemesterNameCodeMapper } from './academicSemester.constant';
 import { TAcademicSemester } from './academicSemester.interface';
 import { academicSemester } from './academicSemester.model';
