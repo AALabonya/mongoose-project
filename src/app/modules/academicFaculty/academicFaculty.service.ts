@@ -10,8 +10,8 @@ const getAllAcademicFacultyIntoBD = async () => {
   const result = await AcademicFaculty.find();
   return result;
 };
-const getSingleAcademicFacultyIntoBD = async () => {
-  const result = await AcademicFaculty.find();
+const getSingleAcademicFacultyIntoBD = async (id: string) => {
+  const result = await AcademicFaculty.findOne({});
   return result;
 };
 export const AcademicFacultyService = {
