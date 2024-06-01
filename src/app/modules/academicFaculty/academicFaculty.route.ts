@@ -18,6 +18,6 @@ router.patch(
   ),
   AcademicsSemesterControllers.updateAcademicSemester,
 );
-router.get('/', AcademicsSemesterControllers.getAllAcademicsSemester);
+router.get('/', AcademicFacultyControllers.getSingleAcademicFaculty);
 
 export const AcademicSemesterRoutes = router;
