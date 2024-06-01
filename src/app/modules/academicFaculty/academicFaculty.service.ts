@@ -6,6 +6,11 @@ const createAcademicFAcultyIntoBD = async (payload: TAcademicFaculty) => {
   return result;
 };
 
+const getAllAcedamicFacultyIntoBD= async()=>{
+    const result =
+}
+
+
 export const AcademicFacultyService = {
   createAcademicFAcultyIntoBD,
 };
