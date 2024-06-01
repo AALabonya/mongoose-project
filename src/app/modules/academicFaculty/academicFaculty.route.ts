@@ -4,7 +4,7 @@ import validateRequest from '../../middlwares/validateRequest';
 import { AcademicFacultyValidation } from './academicFaculty.validation';
 
 const router = express.Router();
-router.get('/:facultyId', AcademicFacultyControllers.createAcademicFaculty);
+router.get('/:facultyId', AcademicFacultyControllers.getSingleAcademicFaculty);
 router.post(
   '/create-academic-faculty',
   validateRequest(
@@ -20,6 +20,6 @@ router.patch(
   ),
   AcademicFacultyControllers.updateAcademicFaculty,
 );
-router.get('/', AcademicFacultyControllers.getSingleAcademicFaculty);
+router.get('/', AcademicFacultyControllers.getAllAcademicFaculty);
 
 export const AcademicFacultyRoutes = router;
