@@ -3,7 +3,7 @@ import catchAsync from '../../../utils/catchAsync';
 import sendResponse from '../../../utils/sendResponse';
 import { AcademicFacultyService } from './academicFaculty.service';
 
-const createAcademicsSemester = catchAsync(async (req, res) => {
+const createAcademicFaculty = catchAsync(async (req, res) => {
   const result = await AcademicFacultyService.createAcademicFAcultyIntoDB(
     req.body,
   );
@@ -16,8 +16,19 @@ const createAcademicsSemester = catchAsync(async (req, res) => {
   });
 });
 
+const getAllAcademicsSemester = catchAsync(async (req, res) => {
+  const result = await AcademicSemesterServices.getAllAcademicsSemesterIntoBD();
+
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Student are retrieved succesfully',
+    data: result,
+  });
+});
+
 export const AcademicsSemesterControllers = {
-  createAcademicsSemester,
+  createAcademicFaculty,
   getAllAcademicsSemester,
   getSingleAcademicsSemester,
   updateAcademicSemester,
