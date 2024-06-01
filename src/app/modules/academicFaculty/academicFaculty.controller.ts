@@ -35,13 +35,13 @@ const getSingleAcademicFaculty = catchAsync(async (req, res) => {
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: 'Student are retrieved succesfully',
+    message: 'Academic Faculty are retrieved succesfully',
     data: result,
   });
 });
 const updateAcademicFaculty = catchAsync(async (req, res) => {
   const { academicId } = req.params;
-  const result = await AcademicSemesterServices.updateAcademicsSemesterIntoBD(
+  const result = await AcademicFacultyService.updateAcademicFacultyIntoDB(
     academicId,
     req.body,
   );
@@ -49,7 +49,7 @@ const updateAcademicFaculty = catchAsync(async (req, res) => {
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: 'Academic semester is updated successfully',
+    message: 'Academic Faculty is updated successfully',
     data: result,
   });
 });
