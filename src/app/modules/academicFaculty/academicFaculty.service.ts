@@ -17,4 +17,5 @@ const getSingleAcademicFacultyIntoBD = async () => {
 export const AcademicFacultyService = {
   createAcademicFAcultyIntoBD,
   getAllAcademicFacultyIntoBD,
+  getSingleAcademicFacultyIntoBD,
 };
