@@ -39,8 +39,23 @@ const getSingleAcademicFaculty = catchAsync(async (req, res) => {
     data: result,
   });
 });
+const updateAcademicFaculty = catchAsync(async (req, res) => {
+  const { academicId } = req.params;
+  const result = await AcademicSemesterServices.updateAcademicsSemesterIntoBD(
+    academicId,
+    req.body,
+  );
+
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Academic semester is updated successfully',
+    data: result,
+  });
+});
 export const AcademicsSemesterControllers = {
   createAcademicFaculty,
   getAllAcademicFaculty,
   getSingleAcademicFaculty,
+  updateAcademicFaculty,
 };
