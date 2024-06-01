@@ -12,11 +12,9 @@ router.post(
 );
 
 router.patch(
-  '/:academicId',
-  validateRequest(
-    AcademicSemesterValidation.updateAcademicSemesterValidationSchema,
-  ),
-  AcademicsSemesterControllers.updateAcademicSemester,
+  '/:facultyId',
+  validateRequest(AcademicFacultyValidation.academicValidationSchema),
+  AcademicFacultyControllers.updateAcademicFaculty,
 );
 router.get('/', AcademicFacultyControllers.getSingleAcademicFaculty);
 
