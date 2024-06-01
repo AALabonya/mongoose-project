@@ -26,10 +26,21 @@ const getAllAcademicFaculty = catchAsync(async (req, res) => {
     data: result,
   });
 });
+const getSingleAcademicFaculty = catchAsync(async (req, res) => {
+  const { academicId } = req.params;
 
+  const result =
+    await AcademicFacultyService.getSingleAcademicFacultyIntoDB(academicId);
+
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Student are retrieved succesfully',
+    data: result,
+  });
+});
 export const AcademicsSemesterControllers = {
   createAcademicFaculty,
   getAllAcademicFaculty,
-  getSingleAcademicsSemester,
-  updateAcademicSemester,
+  getSingleAcademicFaculty,
 };
