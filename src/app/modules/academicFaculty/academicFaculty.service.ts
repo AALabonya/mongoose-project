@@ -11,7 +11,7 @@ const getAllAcademicFacultyIntoBD = async () => {
   return result;
 };
 const getSingleAcademicFacultyIntoBD = async (id: string) => {
-  const result = await AcademicFaculty.findOne({});
+  const result = await AcademicFaculty.findById(id);
   return result;
 };
 export const AcademicFacultyService = {
