@@ -6,11 +6,15 @@ const createAcademicFAcultyIntoBD = async (payload: TAcademicFaculty) => {
   return result;
 };
 
-const getAllAcedamicFacultyIntoBD= async()=>{
-    const result =
-}
-
-
+const getAllAcademicFacultyIntoBD = async () => {
+  const result = await AcademicFaculty.find();
+  return result;
+};
+const getSingleAcademicFacultyIntoBD = async () => {
+  const result = await AcademicFaculty.find();
+  return result;
+};
 export const AcademicFacultyService = {
   createAcademicFAcultyIntoBD,
+  getAllAcademicFacultyIntoBD,
 };
