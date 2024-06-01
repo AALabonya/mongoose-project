@@ -1,3 +1,11 @@
 import { TAcademicFaculty } from './academicFaculty.interface';
+import { AcademicFaculty } from './academicFaculty.model';
 
-const createAcedemicFAcultyIntoBD = async (payload: TAcademicFaculty) => {};
+const createAcademicFAcultyIntoBD = async (payload: TAcademicFaculty) => {
+  const result = await AcademicFaculty.create(payload);
+  return result;
+};
+
+export const AcademicFacultyService = {
+  createAcademicFAcultyIntoBD,
+};
