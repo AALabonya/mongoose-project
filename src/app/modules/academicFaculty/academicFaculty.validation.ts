@@ -5,3 +5,7 @@ const academicValidationSchema = z.object({
     invalid_type_error: ' Academic faculty must be string',
   }),
 });
+
+export const AcademicFacultyValidation = {
+  academicValidationSchema,
+};
