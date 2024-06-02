@@ -47,4 +47,17 @@ const updateAcademicDepartment = catchAsync(async (req, res) => {
     departmentId,
     req.body,
   );
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Academic Department is updated Successfully',
+    data: result,
+  });
 });
+
+export const AcademicDepartmentControllers = {
+  createAcademicDepartment,
+  getAllAcademicDepartment,
+  getSingleAcademicDepartment,
+  updateAcademicDepartment,
+};
