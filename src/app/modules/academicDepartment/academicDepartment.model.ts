@@ -35,6 +35,12 @@ academicDepartmentSchema.pre('save', async function (next) {
   }
   next();
 });
+
+//update korar age
+academicDepartmentSchema.pre('findOneAndUpdate', async function (next) {
+  const query = this.getQuery();
+});
+
 export const AcademicDepartment = model<TAcademicDepartment>(
   'AcademicDepartment',
   academicDepartmentSchema,
