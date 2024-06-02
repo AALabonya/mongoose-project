@@ -9,7 +9,7 @@ const findLastStudentId = async () => {
     },
     {
       id: 1,
-      _id: 0,
+      _id: 1,
     },
   )
     .sort({
