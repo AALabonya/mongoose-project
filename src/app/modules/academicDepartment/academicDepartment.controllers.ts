@@ -26,3 +26,11 @@ const getAllAcademicDepartment = catchAsync(async (req, res) => {
     data: result,
   });
 });
+
+const getSingleAcademicDepartment = catchAsync(async (req, res) => {
+  const { departmentId } = req.params;
+  const result =
+    await AcademicDepartmentService.getSingleAcademicDepartmentIntoDB(
+      departmentId,
+    );
+});
