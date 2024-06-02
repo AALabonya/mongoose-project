@@ -36,7 +36,15 @@ const getSingleAcademicDepartment = catchAsync(async (req, res) => {
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: 'Academic Department is created Successfully',
+    message: 'Academic Department is retrieved Successfully',
     data: result,
   });
+});
+
+const updateAcademicDepartment = catchAsync(async (req, res) => {
+  const { departmentId } = req.params;
+  const result = await AcademicDepartmentService.updateAcademicDepartmentIntoDB(
+    departmentId,
+    req.body,
+  );
 });
