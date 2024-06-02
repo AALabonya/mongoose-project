@@ -39,6 +39,11 @@ academicDepartmentSchema.pre('save', async function (next) {
 //update korar age
 academicDepartmentSchema.pre('findOneAndUpdate', async function (next) {
   const query = this.getQuery();
+  const isDepartmentExists = await AcademicDepartment.findOne(query);
+  if (isDepartmentExists) {
+    throw new Error('Department is Already Exists');
+  }
+  next();
 });
 
 export const AcademicDepartment = model<TAcademicDepartment>(
