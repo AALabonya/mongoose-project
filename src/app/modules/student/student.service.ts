@@ -1,9 +1,9 @@
-import { Session } from 'inspector';
 import { Student } from './student.model';
 import mongoose from 'mongoose';
 import AppError from '../../errors/AppError';
 import httpStatus from 'http-status';
 import { User } from '../users/user.model';
+import { TStudent } from './student.interfaces';
 
 const getAllStudentsFromDB = async () => {
   const result = await Student.find()
@@ -29,8 +29,8 @@ const getSingleStudentFromDB = async (id: string) => {
   return result;
 };
 
-const updatedStudentFromDB = async (id: string) => {
-  const result = await Student.findOne({ id });
+const updatedStudentFromDB = async (id: string, payload: Partial<TStudent>) => {
+  const result = await Student.findOneAndUpdate({ id }, payload);
 
   return result;
 };
