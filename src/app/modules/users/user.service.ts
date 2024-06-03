@@ -25,20 +25,24 @@ const createStudentIntoDB = async (password: string, payload: TStudent) => {
 
   console.log('hello', admissionSemester);
 
-  //set  generated id
-  userData.id = await generateStudentId(admissionSemester);
+  try {
+    //set  generated id
+    userData.id = await generateStudentId(admissionSemester);
 
-  // create a user
-  const newUser = await User.create(userData);
+    // create a user
+    const newUser = await User.create(userData);
 
-  //create a student
-  if (Object.keys(newUser).length) {
-    // set id , _id as user
-    payload.id = newUser.id;
-    payload.user = newUser._id; //reference _id
+    //create a student
+    if (Object.keys(newUser).length) {
+      // set id , _id as user
+      payload.id = newUser.id;
+      payload.user = newUser._id; //reference _id
 
-    const newStudent = await Student.create(payload);
-    return newStudent;
+      const newStudent = await Student.create(payload);
+      return newStudent;
+    }
+  } catch (error) {
+    console.log(error);
   }
 };
 
