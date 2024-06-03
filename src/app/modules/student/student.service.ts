@@ -58,7 +58,10 @@ const deleteStudentFromDB = async (id: string) => {
     await session.endSession();
 
     return deletedStudent;
-  } catch (error) {}
+  } catch (error) {
+    session.abortTransaction();
+    session.endSession();
+  }
 };
 
 export const StudentServices = {
