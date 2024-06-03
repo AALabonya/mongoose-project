@@ -67,8 +67,8 @@ const updateGuardianValidationSchema = z.object({
   fatherOccupation: z.string().optional(),
   fatherContactNo: z.string().optional(),
   motherName: z.string().optional(),
-  motherOccupation: z.string(),
-  motherContactNo: z.string(),
+  motherOccupation: z.string().optional(),
+  motherContactNo: z.string().optional(),
 });
 export const studentValidations = {
   createStudentValidationSchema,
