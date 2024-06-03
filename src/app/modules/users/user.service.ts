@@ -1,3 +1,4 @@
+import mongoose from 'mongoose';
 import config from '../../config';
 import { academicSemester } from '../academicSemester/academicSemester.model';
 import { TStudent } from '../student/student.interfaces';
@@ -25,6 +26,7 @@ const createStudentIntoDB = async (password: string, payload: TStudent) => {
 
   console.log('hello', admissionSemester);
 
+  const session = await mongoose.startSession();
   try {
     //set  generated id
     userData.id = await generateStudentId(admissionSemester);
