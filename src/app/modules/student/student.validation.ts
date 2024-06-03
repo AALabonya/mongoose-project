@@ -72,8 +72,8 @@ const updateGuardianValidationSchema = z.object({
 });
 
 const updateLocalGuardianValidationSchema = z.object({
-  name: z.string(),
-  occupation: z.string(),
+  name: z.string().optional(),
+  occupation: z.string().optional(),
   contactNo: z.string(),
   address: z.string(),
 });
