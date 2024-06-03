@@ -33,7 +33,7 @@ academicDepartmentSchema.pre('save', async function (next) {
     name: this.name,
   });
   if (isDepartmentExists) {
-    throw new AppError(404, 'Department is Already Exists');
+    throw new AppError(httpStatus.NOT_FOUND, 'Department is Already Exists');
   }
   next();
 });
