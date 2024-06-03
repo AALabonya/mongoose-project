@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-const userNameValidationSchema = z.object({
+const createUserNameValidationSchema = z.object({
   firstName: z
     .string()
     .min(1)
@@ -12,7 +12,7 @@ const userNameValidationSchema = z.object({
   lastName: z.string(),
 });
 
-const guardianValidationSchema = z.object({
+const createGuardianValidationSchema = z.object({
   fatherName: z.string(),
   fatherOccupation: z.string(),
   fatherContactNo: z.string(),
@@ -21,7 +21,7 @@ const guardianValidationSchema = z.object({
   motherContactNo: z.string(),
 });
 
-const localGuardianValidationSchema = z.object({
+const createLocalGuardianValidationSchema = z.object({
   name: z.string(),
   occupation: z.string(),
   contactNo: z.string(),

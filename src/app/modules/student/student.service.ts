@@ -28,6 +28,7 @@ const getSingleStudentFromDB = async (id: string) => {
     });
   return result;
 };
+
 const updatedStudentFromDB = async (id: string) => {
   const result = await Student.findOne({ id });
 
