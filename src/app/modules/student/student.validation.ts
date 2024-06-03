@@ -82,11 +82,11 @@ export const updateStudentValidationSchema = z.object({
   body: z.object({
     password: z.string().max(20).optional(),
     student: z.object({
-      name: updateUserNameValidationSchema,
-      gender: z.enum(['male', 'female', 'other']),
+      name: updateUserNameValidationSchema.optional(),
+      gender: z.enum(['male', 'female', 'other']).optional(),
       dateOfBirth: z.string().optional(),
-      email: z.string().email(),
-      contactNo: z.string(),
+      email: z.string().email().optional(),
+      contactNo: z.string().optional(),
       emergencyContactNo: z.string().optional(),
       bloodGroup: z
         .enum(['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'])
