@@ -2,7 +2,6 @@ import { StudentServices } from './student.service';
 import sendResponse from '../../../utils/sendResponse';
 import httpStatus from 'http-status';
 import catchAsync from '../../../utils/catchAsync';
-import mongoose from 'mongoose';
 
 const getSingleStudent = catchAsync(async (req, res) => {
   const { studentId } = req.params;
@@ -28,21 +27,15 @@ const getAllStudents = catchAsync(async (req, res) => {
 });
 
 const deleteStudent = catchAsync(async (req, res) => {
-  //user and student collection theke same data delete korar jonno transaction use korbo
+  const { studentId } = req.params;
+  const result = await StudentServices.deleteStudentFromDB(studentId);
 
-  const session = await mongoose.startSession();
-
-  try {
-    const { studentId } = req.params;
-    const result = await StudentServices.deleteStudentFromDB(studentId);
-
-    sendResponse(res, {
-      statusCode: httpStatus.OK,
-      success: true,
-      message: 'Student is deleted succesfully',
-      data: result,
-    });
-  } catch (error) {}
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Student is deleted succesfully',
+    data: result,
+  });
 });
 
 export const StudentControllers = {

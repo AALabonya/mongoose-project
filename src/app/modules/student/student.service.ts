@@ -25,8 +25,11 @@ const getSingleStudentFromDB = async (id: string) => {
 };
 
 const deleteStudentFromDB = async (id: string) => {
-  const result = await Student.updateOne({ id }, { isDeleted: true });
-  return result;
+  //user and student collection theke same data delete korar jonno transaction use korbo
+  try {
+    const result = await Student.updateOne({ id }, { isDeleted: true });
+    return result;
+  } catch (error) {}
 };
 
 export const StudentServices = {
