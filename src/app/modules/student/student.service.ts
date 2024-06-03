@@ -28,6 +28,11 @@ const getSingleStudentFromDB = async (id: string) => {
     });
   return result;
 };
+const updatedStudentFromDB = async (id: string) => {
+  const result = await Student.findOne({ id });
+
+  return result;
+};
 
 const deleteStudentFromDB = async (id: string) => {
   //user and student collection theke same data delete korar jonno transaction use korbo
