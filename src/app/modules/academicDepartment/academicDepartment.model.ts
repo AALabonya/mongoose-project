@@ -18,6 +18,13 @@ const academicDepartmentSchema = new Schema<TAcademicDepartment>(
   },
 );
 
+class AppError extends Error{
+  public statusCode:number;
+  constructor(statusCode: number, message:string, stack=''){
+ 
+}
+
+
 // academicDepartmentSchema.pre("save", async function(next){
 //     const isDepartmentExists = await AcademicDepartment.findOne({name: this.name,
 //       });
