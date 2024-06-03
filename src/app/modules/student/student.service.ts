@@ -67,6 +67,7 @@ const deleteStudentFromDB = async (id: string) => {
   } catch (error) {
     session.abortTransaction();
     session.endSession();
+    throw new Error();
   }
 };
 
