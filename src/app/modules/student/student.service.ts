@@ -32,6 +32,10 @@ const getSingleStudentFromDB = async (id: string) => {
 const updatedStudentFromDB = async (id: string, payload: Partial<TStudent>) => {
   const { name, guardian, localGuardian, ...remainingStudentData } = payload;
 
+  const modifiedUpdatedData: Record<string, unknown> = {
+    ...remainingStudentData,
+  };
+
   const result = await Student.findOneAndUpdate({ id }, payload);
 
   return result;
