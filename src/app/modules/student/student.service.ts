@@ -3,6 +3,7 @@ import { Student } from './student.model';
 import mongoose from 'mongoose';
 import AppError from '../../errors/AppError';
 import httpStatus from 'http-status';
+import { User } from '../users/user.model';
 
 const getAllStudentsFromDB = async () => {
   const result = await Student.find()
@@ -42,6 +43,12 @@ const deleteStudentFromDB = async (id: string) => {
     if (!deletedStudent) {
       throw new AppError(httpStatus.BAD_REQUEST, 'Failed to delete student');
     }
+
+    const deleteUser = await User.findOneAndUpdate(
+      { id },
+      { isDeleted: true },
+      { new: true, session },
+    );
     return result;
   } catch (error) {}
 };
