@@ -57,7 +57,7 @@ const deleteStudentFromDB = async (id: string) => {
     await session.commitTransaction();
     await session.endSession();
 
-    return result;
+    return deletedStudent;
   } catch (error) {}
 };
 
