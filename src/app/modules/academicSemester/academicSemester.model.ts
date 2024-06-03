@@ -46,7 +46,7 @@ const academicSemesterSchema = new Schema<TAcademicSemester>(
 //normal function use korbo arrow function a this kaj korbe na
 
 academicSemesterSchema.pre('save', async function (next) {
-  const isSemesterExists = await academicSemester.findOne({
+  const isSemesterExists = await AcademicSemester.findOne({
     year: this.year,
     name: this.name,
   });
@@ -56,7 +56,7 @@ academicSemesterSchema.pre('save', async function (next) {
   next();
 });
 
-export const academicSemester = model<TAcademicSemester>(
+export const AcademicSemester = model<TAcademicSemester>(
   'AcademicSemester',
   academicSemesterSchema,
 );

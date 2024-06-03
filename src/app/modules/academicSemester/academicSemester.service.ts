@@ -1,6 +1,6 @@
 import { academicsSemesterNameCodeMapper } from './academicSemester.constant';
 import { TAcademicSemester } from './academicSemester.interface';
-import { academicSemester } from './academicSemester.model';
+import { AcademicSemester } from './academicSemester.model';
 
 const createAcademicsSemesterIntoBD = async (payload: TAcademicSemester) => {
   //here maping chalabo data save korar age if block diye check korbo
@@ -8,17 +8,17 @@ const createAcademicsSemesterIntoBD = async (payload: TAcademicSemester) => {
   if (academicsSemesterNameCodeMapper[payload.name] !== payload.code) {
     throw new Error('Invalid Semester Code');
   }
-  const result = await academicSemester.create(payload);
+  const result = await AcademicSemester.create(payload);
   return result;
 };
 
 const getAllAcademicsSemesterIntoBD = async () => {
-  const result = await academicSemester.find();
+  const result = await AcademicSemester.find();
   return result;
 };
 
 const getSingleAcademicsSemesterIntoBD = async (id: string) => {
-  const result = await academicSemester.findById(id);
+  const result = await AcademicSemester.findById(id);
   return result;
 };
 const updateAcademicsSemesterIntoBD = async (
@@ -33,7 +33,7 @@ const updateAcademicsSemesterIntoBD = async (
     throw new Error('Invalid Semester Code');
   }
 
-  const result = await academicSemester.findOneAndUpdate({ _id: id }, payload, {
+  const result = await AcademicSemester.findOneAndUpdate({ _id: id }, payload, {
     new: true,
   });
   return result;
