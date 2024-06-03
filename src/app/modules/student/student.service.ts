@@ -36,7 +36,25 @@ const updatedStudentFromDB = async (id: string, payload: Partial<TStudent>) => {
     ...remainingStudentData,
   };
 
-  const result = await Student.findOneAndUpdate({ id }, payload);
+  if (name && Object.keys(name).length) {
+    for (const [key, value] of Object.entries(name)) {
+      modifiedUpdatedData[`$name${key}`] = value;
+    }
+  }
+  if (guardian && Object.keys(guardian).length) {
+    for (const [key, value] of Object.entries(guardian)) {
+      modifiedUpdatedData[`$guardian${key}`] = value;
+    }
+  }
+  if (localGuardian && Object.keys(localGuardian).length) {
+    for (const [key, value] of Object.entries(localGuardian)) {
+      modifiedUpdatedData[`$localGuardian${key}`] = value;
+    }
+  }
+  const result = await Student.findOneAndUpdate({ id }, modifiedUpdatedData, {
+    new: true,
+    runValidators: true,
+  });
 
   return result;
 };
