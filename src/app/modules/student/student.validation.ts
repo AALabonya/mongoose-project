@@ -70,6 +70,13 @@ const updateGuardianValidationSchema = z.object({
   motherOccupation: z.string().optional(),
   motherContactNo: z.string().optional(),
 });
+
+const updateLocalGuardianValidationSchema = z.object({
+  name: z.string(),
+  occupation: z.string(),
+  contactNo: z.string(),
+  address: z.string(),
+});
 export const studentValidations = {
   createStudentValidationSchema,
 };
