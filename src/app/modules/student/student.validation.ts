@@ -87,10 +87,12 @@ export const updateStudentValidationSchema = z.object({
       dateOfBirth: z.string().optional(),
       email: z.string().email(),
       contactNo: z.string(),
-      emergencyContactNo: z.string(),
-      bloodGroup: z.enum(['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-']),
-      presentAddress: z.string(),
-      permanentAddress: z.string(),
+      emergencyContactNo: z.string().optional(),
+      bloodGroup: z
+        .enum(['A+', 'A-', 'B+', 'B-', 'AB+', 'AB-', 'O+', 'O-'])
+        .optional(),
+      presentAddress: z.string().optional(),
+      permanentAddress: z.string().optional(),
       guardian: updateGuardianValidationSchema.optional(),
       localGuardian: updateLocalGuardianValidationSchema.optional(),
       admissionSemester: z.string().optional(),
