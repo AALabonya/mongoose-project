@@ -30,6 +30,8 @@ const getSingleStudentFromDB = async (id: string) => {
 };
 
 const updatedStudentFromDB = async (id: string, payload: Partial<TStudent>) => {
+  const { name, guardian, localGuardian, ...remainingStudentData } = payload;
+
   const result = await Student.findOneAndUpdate({ id }, payload);
 
   return result;
@@ -67,7 +69,7 @@ const deleteStudentFromDB = async (id: string) => {
   } catch (error) {
     session.abortTransaction();
     session.endSession();
-    throw new Error();
+    throw new Error('Failed to create Student');
   }
 };
 
