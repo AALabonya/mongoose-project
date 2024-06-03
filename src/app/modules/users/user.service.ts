@@ -41,16 +41,22 @@ const createStudentIntoDB = async (password: string, payload: TStudent) => {
     if (!newUser.length) {
       throw new AppError(httpStatus.BAD_REQUEST, 'Failed to create user');
     }
+    payload.id = newUser[0].id;
+    payload.user = newUser[0]._id; //reference _id
 
-    //create a student
-    if (Object.keys(newUser).length) {
-      // set id , _id as user
-      payload.id = newUser.id;
-      payload.user = newUser._id; //reference _id
+    const newStudent = await Student.create([payload], { session });
+    await session.commitTransaction();
+    await session.endSession();
+    return newStudent;
+    // //create a student
+    // if (Object.keys(newUser).length) {
+    //   // set id , _id as user
+    //   payload.id = newUser.id;
+    //   payload.user = newUser._id; //reference _id
 
-      const newStudent = await Student.create(payload);
-      return newStudent;
-    }
+    //   const newStudent = await Student.create(payload);
+    //   return newStudent;
+    // }
   } catch (error) {
     console.log(error);
   }
