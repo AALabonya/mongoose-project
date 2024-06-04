@@ -27,7 +27,7 @@ const globalErrorHandler = (err, req, res, next) => {
     const statusCode = 400;
     return {
       statusCode,
-      message: 'Zod Validation Error',
+      message: 'Validation Error',
       errorSources,
     };
   };
