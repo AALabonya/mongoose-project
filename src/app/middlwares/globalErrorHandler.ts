@@ -6,6 +6,7 @@
 import { NextFunction, Request, Response } from 'express';
 import { ZodError, ZodIssue } from 'zod';
 import { TErrorSource } from '../interface/error';
+import config from '../config';
 
 const globalErrorHandler = (err, req, res, next) => {
   let statusCode = err.statusCode || 500;
@@ -44,7 +45,7 @@ const globalErrorHandler = (err, req, res, next) => {
     success: false,
     message,
     errorSources,
-    stack: err?.stack,
+    stack: config.NODE_ENV === 'development' ? err?.stack : null,
   });
 };
 
