@@ -12,6 +12,11 @@ const globalErrorHandler = (err, req, res, next) => {
   type TErrorSource = {
     path: string | number;
     message: string;
+  }[];
+
+  let errorSource = {
+    path: '',
+    message: 'Something went wrong',
   };
 
   return res.status(statusCode).json({
