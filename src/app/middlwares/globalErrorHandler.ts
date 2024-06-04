@@ -36,4 +36,10 @@ const globalErrorHandler = (err, req, res, next) => {
   };
 };
 
+if (err instanceof ZodError) {
+  const simplifiedError = handleZodError(err);
+
+  message = 'ami zod error';
+}
+
 export default globalErrorHandler;
