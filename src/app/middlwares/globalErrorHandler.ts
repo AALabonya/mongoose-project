@@ -4,6 +4,7 @@
 //global error handler
 
 import { NextFunction, Request, Response } from 'express';
+import { ZodError, ZodIssue } from 'zod';
 
 const globalErrorHandler = (err, req, res, next) => {
   const statusCode = err.statusCode || 500;
@@ -18,7 +19,11 @@ const globalErrorHandler = (err, req, res, next) => {
     path: '',
     message: 'Something went wrong',
   };
+const handleZodError=(err:ZodError)=>{
+  const errorSource=err.issues.map((issue:ZodIssue))
 
+  const statusCode =400
+}
   return res.status(statusCode).json({
     success: false,
     message,
