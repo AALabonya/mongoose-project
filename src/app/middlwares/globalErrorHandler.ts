@@ -5,12 +5,12 @@
 
 import { NextFunction, Request, Response } from 'express';
 import { ZodError, ZodIssue } from 'zod';
+import { TErrorSource } from '../interface/error';
 
 const globalErrorHandler = (err, req, res, next) => {
-  const statusCode = err.statusCode || 500;
-  const message = err.message || 'Something went wrong';
-
-  let errorSources: TErrorSource = [
+  let statusCode = err.statusCode || 500;
+  let message = err.message || 'Something went wrong';
+  let errorSources: TErrorSources = [
     {
       path: '',
       message: 'Something went wrong',
@@ -34,8 +34,9 @@ const globalErrorHandler = (err, req, res, next) => {
 
   if (err instanceof ZodError) {
     const simplifiedError = handleZodError(err);
-
-    message = 'ami zod error';
+    statusCode = simplifiedError?.statusCode;
+    message = simplifiedError?.message;
+    errorSources = simplifiedError?.errorSources;
   }
 
   //ultimate
