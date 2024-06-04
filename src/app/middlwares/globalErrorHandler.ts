@@ -44,6 +44,7 @@ const globalErrorHandler = (err, req, res, next) => {
     success: false,
     message,
     errorSources,
+    stack: err?.stack,
   });
 };
 
