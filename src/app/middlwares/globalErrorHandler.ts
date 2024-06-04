@@ -10,19 +10,14 @@ const globalErrorHandler = (err, req, res, next) => {
   const statusCode = err.statusCode || 500;
   const message = err.message || 'Something went wrong';
 
-  type TErrorSource = {
-    path: string | number;
-    message: string;
-  }[];
-
-  let errorSource: TErrorSource = [
+  let errorSources: TErrorSource = [
     {
       path: '',
       message: 'Something went wrong',
     },
   ];
   const handleZodError = (err: ZodError) => {
-    const errorSource: TErrorSource = err.issues.map((issue: ZodIssue) => {
+    const errorSources: TErrorSource = err.issues.map((issue: ZodIssue) => {
       return {
         path: issue?.path[issue.path.length - 1],
         message: issue.message,
@@ -30,6 +25,11 @@ const globalErrorHandler = (err, req, res, next) => {
     });
 
     const statusCode = 400;
+    return {
+      statusCode,
+      message: 'Zod Validation Error',
+      errorSources,
+    };
   };
 
   if (err instanceof ZodError) {
@@ -38,11 +38,12 @@ const globalErrorHandler = (err, req, res, next) => {
     message = 'ami zod error';
   }
 
-  return {
-    statusCode,
-    message: 'Zod Validation Error',
-    errorSource,
-  };
+  //ultimate
+  return res.status(statusCode).json({
+    success: false,
+    message,
+    errorSources,
+  });
 };
 
 export default globalErrorHandler;
