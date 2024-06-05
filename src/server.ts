@@ -27,4 +27,5 @@ process.on('unhandleRejection', () => {
       process.exit(1);
     });
   }
+  process.exit(1);
 });
