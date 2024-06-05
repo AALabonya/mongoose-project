@@ -12,7 +12,7 @@ const getAllStudentsFromDB = async (query: Record<string, unknown>) => {
 
   let searchTerm = '';
   if (query?.searchTerm) {
-    searchTerm = query?.searchTerm;
+    searchTerm = query?.searchTerm as string;
   }
   const result = await Student.find({
     $or: ['email', 'name.firstName', 'presentAddress'].map((field) => ({
