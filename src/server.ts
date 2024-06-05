@@ -20,3 +20,11 @@ async function main() {
   }
 }
 main();
+
+process.on('unhandleRejection', () => {
+  if (server) {
+    server.close(() => {
+      process.exit(1);
+    });
+  }
+});
