@@ -1,4 +1,3 @@
-import mongoose from 'mongoose';
 import { TErrorSource, TGenericErrorResponse } from '../interface/error';
 
 const handleDuplicateError = (err: any): TGenericErrorResponse => {
@@ -9,7 +8,7 @@ const handleDuplicateError = (err: any): TGenericErrorResponse => {
   const extractedMessage = match && match[1];
 
   const errorSources: TErrorSource = [
-    { path: err.path, message: extractedMessage },
+    { path: err.path, message: `${extractedMessage} is already exist` },
   ];
 
   const statusCode = 400;
