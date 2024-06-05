@@ -5,7 +5,11 @@ import httpStatus from 'http-status';
 import { User } from '../users/user.model';
 import { TStudent } from './student.interfaces';
 
-const getAllStudentsFromDB = async () => {
+const getAllStudentsFromDB = async (query: Record<string, unknown>) => {
+  //{email:{$regex : query.searchTerm, $options:i}}
+  //{presentAddress:{$regex : query.searchTerm, $options:i}}
+  //{'name.firstName':{$regex : query.searchTerm, $options:i}}
+
   const result = await Student.find()
     .populate('admissionSemester')
     .populate({
