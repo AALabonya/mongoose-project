@@ -8,6 +8,7 @@ import { TErrorSource } from '../interface/error';
 import config from '../config';
 import handleZodError from '../errors/handleZodError';
 import handleValidationError from '../errors/handleValidationError';
+import handleCastError from '../errors/handleCastError';
 
 const globalErrorHandler = (err, req, res, next) => {
   let statusCode = err.statusCode || 500;
