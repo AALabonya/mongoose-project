@@ -29,10 +29,10 @@ const getAllStudentsFromDB = async (query: Record<string, unknown>) => {
   });
 
   //Filtering
-  const excludeField = ['searchTerm', 'sort'];
+  const excludeField = ['searchTerm', 'sort', 'limit'];
 
   excludeField.forEach((el) => delete queryObj[el]);
-  console.log(query, queryObj);
+  // console.log(query, queryObj);
 
   const filterQuery = searchQuery
     .find(queryObj)
@@ -50,9 +50,16 @@ const getAllStudentsFromDB = async (query: Record<string, unknown>) => {
     sort = query.sort as string;
   }
 
-  const sortQuery = await filterQuery.sort(sort);
+  const sortQuery = filterQuery.sort(sort);
+  let limit = 1;
 
-  return sortQuery;
+  if (query.limit) {
+    limit = query.limit as number;
+  }
+
+  const limitQuery = await sortQuery.limit(limit);
+
+  return limitQuery;
 };
 
 const getSingleStudentFromDB = async (id: string) => {
