@@ -7,7 +7,9 @@ import { TStudent } from './student.interfaces';
 
 const getAllStudentsFromDB = async (query: Record<string, unknown>) => {
   console.log('base query', query);
-  const queryObj = { ...query };
+
+  const queryObj = { ...query }; //copy
+
   //{email:{$regex : query.searchTerm, $options:i}}
   //{presentAddress:{$regex : query.searchTerm, $options:i}}
   //{'name.firstName':{$regex : query.searchTerm, $options:i}}
@@ -28,6 +30,8 @@ const getAllStudentsFromDB = async (query: Record<string, unknown>) => {
 
   //Filtering
   const excludeField = ['searchTerm'];
+
+  excludeField.forEach((el) => delete queryObj[el]);
   const result = await searchQuery
     .find()
     .populate('admissionSemester')
