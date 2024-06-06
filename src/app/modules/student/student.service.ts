@@ -43,7 +43,11 @@ const getAllStudentsFromDB = async (query: Record<string, unknown>) => {
         path: 'academicFaculty',
       },
     });
+  let sort = '-createdAt';
 
+  if (query.sort) {
+    sort = query.sort as string;
+  }
   return result;
 };
 
