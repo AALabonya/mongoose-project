@@ -29,12 +29,12 @@ const getAllStudentsFromDB = async (query: Record<string, unknown>) => {
   });
 
   //Filtering
-  const excludeField = ['searchTerm'];
+  const excludeField = ['searchTerm', 'sort'];
 
   excludeField.forEach((el) => delete queryObj[el]);
   console.log(query, queryObj);
 
-  const result = await searchQuery
+  const filterQuery = searchQuery
     .find(queryObj)
     .populate('admissionSemester')
     .populate({
@@ -43,6 +43,7 @@ const getAllStudentsFromDB = async (query: Record<string, unknown>) => {
         path: 'academicFaculty',
       },
     });
+
   return result;
 };
 
