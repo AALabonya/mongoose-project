@@ -32,6 +32,8 @@ const getAllStudentsFromDB = async (query: Record<string, unknown>) => {
   const excludeField = ['searchTerm'];
 
   excludeField.forEach((el) => delete queryObj[el]);
+  console.log(query, queryObj);
+
   const result = await searchQuery
     .find()
     .populate('admissionSemester')
