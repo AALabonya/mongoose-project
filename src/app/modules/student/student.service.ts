@@ -35,7 +35,7 @@ const getAllStudentsFromDB = async (query: Record<string, unknown>) => {
   console.log(query, queryObj);
 
   const result = await searchQuery
-    .find()
+    .find(queryObj)
     .populate('admissionSemester')
     .populate({
       path: 'academicDepartment',
