@@ -22,4 +22,12 @@ class QueryBuilder<T> {
     }
     return this;
   }
+
+  filter() {
+    const queryObj = { ...this.query }; //copy
+    //Filtering
+    const excludeField = ['searchTerm', 'sort', 'limit', 'page', 'fields'];
+
+    excludeField.forEach((el) => delete queryObj[el]);
+  }
 }
