@@ -7,32 +7,25 @@ import { TStudent } from './student.interfaces';
 
 const getAllStudentsFromDB = async (query: Record<string, unknown>) => {
   // const queryObj = { ...query }; //copy
-
   //{email:{$regex : query.searchTerm, $options:i}}
   //{presentAddress:{$regex : query.searchTerm, $options:i}}
   //{'name.firstName':{$regex : query.searchTerm, $options:i}}
-
   // const studentSearchableField = ['email', 'name.firstName', 'presentAddress'];
-
   // let searchTerm = '';
   // if (query?.searchTerm) {
   //   searchTerm = query?.searchTerm as string;
   // }
-
   // //search query
   // const searchQuery = Student.find({
   //   $or: studentSearchableField.map((field) => ({
   //     [field]: { $regex: searchTerm, $options: 'i' },
   //   })),
   // });
-
   // //Filtering
   // const excludeField = ['searchTerm', 'sort', 'limit', 'page', 'fields'];
-
   // excludeField.forEach((el) => delete queryObj[el]);
   // console.log(query, queryObj);
   // console.log({ query }, { queryObj });
-
   // const filterQuery = searchQuery
   //   .find(queryObj)
   //   .populate('admissionSemester')
@@ -42,39 +35,29 @@ const getAllStudentsFromDB = async (query: Record<string, unknown>) => {
   //       path: 'academicFaculty',
   //     },
   //   });
-
-  let sort = '-createdAt';
-
-  if (query.sort) {
-    sort = query.sort as string;
-  }
-
-  const sortQuery = filterQuery.sort(sort);
-  let page = 1;
-  let limit = 1;
-
-  let skip = 0;
-  if (query.limit) {
-    limit = Number(query.limit);
-  }
-  if (query.page) {
-    page = Number(query.page);
-    skip = (page - 1) * limit;
-  }
-
-  const paginateQuery = sortQuery.skip(skip);
-
-  const limitQuery = paginateQuery.limit(limit);
-
-  let fields = '-__v'; // SET DEFAULT VALUE
-
-  if (query.fields) {
-    fields = (query.fields as string).split(',').join(' ');
-  }
-
-  const fieldQuery = await limitQuery.select(fields);
-
-  return fieldQuery;
+  // let sort = '-createdAt';
+  // if (query.sort) {
+  //   sort = query.sort as string;
+  // }
+  // const sortQuery = filterQuery.sort(sort);
+  // let page = 1;
+  // let limit = 1;
+  // let skip = 0;
+  // if (query.limit) {
+  //   limit = Number(query.limit);
+  // }
+  // if (query.page) {
+  //   page = Number(query.page);
+  //   skip = (page - 1) * limit;
+  // }
+  // const paginateQuery = sortQuery.skip(skip);
+  // const limitQuery = paginateQuery.limit(limit);
+  // let fields = '-__v'; // SET DEFAULT VALUE
+  // if (query.fields) {
+  //   fields = (query.fields as string).split(',').join(' ');
+  // }
+  // const fieldQuery = await limitQuery.select(fields);
+  // return fieldQuery;
 };
 
 const getSingleStudentFromDB = async (id: string) => {
