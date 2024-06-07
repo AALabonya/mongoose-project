@@ -63,14 +63,17 @@ const getAllStudentsFromDB = async (query: Record<string, unknown>) => {
 
   const paginateQuery = sortQuery.skip(skip);
 
-  const limitQuery = await paginateQuery.limit(limit);
+  const limitQuery = paginateQuery.limit(limit);
 
-  //field limiting
-  let fields = '-__v';
+  let fields = '-__v'; // SET DEFAULT VALUE
+
   if (query.fields) {
     fields = (query.fields as string).split(',').join(' ');
   }
-  return limitQuery;
+
+  const fieldQuery = await limitQuery.select(fields);
+
+  return fieldQuery;
 };
 
 const getSingleStudentFromDB = async (id: string) => {
