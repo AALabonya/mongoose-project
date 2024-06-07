@@ -12,19 +12,19 @@ const getAllStudentsFromDB = async (query: Record<string, unknown>) => {
   //{presentAddress:{$regex : query.searchTerm, $options:i}}
   //{'name.firstName':{$regex : query.searchTerm, $options:i}}
 
-  const studentSearchableField = ['email', 'name.firstName', 'presentAddress'];
+  // const studentSearchableField = ['email', 'name.firstName', 'presentAddress'];
 
-  let searchTerm = '';
-  if (query?.searchTerm) {
-    searchTerm = query?.searchTerm as string;
-  }
+  // let searchTerm = '';
+  // if (query?.searchTerm) {
+  //   searchTerm = query?.searchTerm as string;
+  // }
 
-  //search query
-  const searchQuery = Student.find({
-    $or: studentSearchableField.map((field) => ({
-      [field]: { $regex: searchTerm, $options: 'i' },
-    })),
-  });
+  // //search query
+  // const searchQuery = Student.find({
+  //   $or: studentSearchableField.map((field) => ({
+  //     [field]: { $regex: searchTerm, $options: 'i' },
+  //   })),
+  // });
 
   // //Filtering
   // const excludeField = ['searchTerm', 'sort', 'limit', 'page', 'fields'];
@@ -32,15 +32,16 @@ const getAllStudentsFromDB = async (query: Record<string, unknown>) => {
   // excludeField.forEach((el) => delete queryObj[el]);
   // console.log(query, queryObj);
   // console.log({ query }, { queryObj });
-  const filterQuery = searchQuery
-    .find(queryObj)
-    .populate('admissionSemester')
-    .populate({
-      path: 'academicDepartment',
-      populate: {
-        path: 'academicFaculty',
-      },
-    });
+
+  // const filterQuery = searchQuery
+  //   .find(queryObj)
+  //   .populate('admissionSemester')
+  //   .populate({
+  //     path: 'academicDepartment',
+  //     populate: {
+  //       path: 'academicFaculty',
+  //     },
+  //   });
 
   let sort = '-createdAt';
 
