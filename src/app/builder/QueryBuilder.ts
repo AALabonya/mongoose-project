@@ -33,4 +33,8 @@ class QueryBuilder<T> {
     this.modelQuery = this.modelQuery.find(queryObj as FilterQuery<T>);
     return this;
   }
+
+  sort() {
+    let sort = '-createdAt';
+  }
 }
