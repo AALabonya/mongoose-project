@@ -6,7 +6,7 @@ import { User } from '../users/user.model';
 import { TStudent } from './student.interfaces';
 
 const getAllStudentsFromDB = async (query: Record<string, unknown>) => {
-  const queryObj = { ...query }; //copy
+  // const queryObj = { ...query }; //copy
 
   //{email:{$regex : query.searchTerm, $options:i}}
   //{presentAddress:{$regex : query.searchTerm, $options:i}}
@@ -26,12 +26,12 @@ const getAllStudentsFromDB = async (query: Record<string, unknown>) => {
     })),
   });
 
-  //Filtering
-  const excludeField = ['searchTerm', 'sort', 'limit', 'page', 'fields'];
+  // //Filtering
+  // const excludeField = ['searchTerm', 'sort', 'limit', 'page', 'fields'];
 
-  excludeField.forEach((el) => delete queryObj[el]);
+  // excludeField.forEach((el) => delete queryObj[el]);
   // console.log(query, queryObj);
-  console.log({ query }, { queryObj });
+  // console.log({ query }, { queryObj });
   const filterQuery = searchQuery
     .find(queryObj)
     .populate('admissionSemester')
