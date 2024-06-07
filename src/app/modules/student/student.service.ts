@@ -4,6 +4,7 @@ import AppError from '../../errors/AppError';
 import httpStatus from 'http-status';
 import { User } from '../users/user.model';
 import { TStudent } from './student.interfaces';
+import QueryBuilder from '../../builder/QueryBuilder';
 
 const getAllStudentsFromDB = async (query: Record<string, unknown>) => {
   // const queryObj = { ...query }; //copy
@@ -58,6 +59,8 @@ const getAllStudentsFromDB = async (query: Record<string, unknown>) => {
   // }
   // const fieldQuery = await limitQuery.select(fields);
   // return fieldQuery;
+
+  const studentQuery = new QueryBuilder(Student.find(), query);
 };
 
 const getSingleStudentFromDB = async (id: string) => {
