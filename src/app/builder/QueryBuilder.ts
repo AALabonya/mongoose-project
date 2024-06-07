@@ -58,3 +58,5 @@ class QueryBuilder<T> {
     return this;
   }
 }
+
+export default QueryBuilder;
