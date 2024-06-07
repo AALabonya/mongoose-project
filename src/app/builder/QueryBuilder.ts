@@ -40,4 +40,11 @@ class QueryBuilder<T> {
 
     return this;
   }
+
+  paginate() {
+    let page = 1;
+    let limit = 1;
+
+    let skip = 0;
+  }
 }
