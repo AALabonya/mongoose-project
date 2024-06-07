@@ -48,5 +48,13 @@ class QueryBuilder<T> {
     const skip = (page - 1) * limit;
 
     this.modelQuery = this?.modelQuery.skip(skip).limit(skip);
+    return this;
+  }
+
+  fields() {
+    const fields =
+      (this?.query?.fields as string).split(',').join(' ') || ' -__v';
+    this.modelQuery = this?.modelQuery.select(fields);
+    return this;
   }
 }
