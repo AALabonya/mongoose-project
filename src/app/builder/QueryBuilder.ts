@@ -35,6 +35,6 @@ class QueryBuilder<T> {
   }
 
   sort() {
-    let sort = '-createdAt';
+    let sort = this?.query?.sort || '-createdAt';
   }
 }
