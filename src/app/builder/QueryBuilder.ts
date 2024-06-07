@@ -42,9 +42,11 @@ class QueryBuilder<T> {
   }
 
   paginate() {
-    let page = 1;
-    let limit = 1;
+    const page = Number(this?.query.page) || 1;
+    const limit = Number(this?.query.limit) || 1;
 
-    let skip = 0;
+    const skip = (page - 1) * limit;
+
+    this.modelQuery = this?.modelQuery.skip(skip).limit(skip);
   }
 }
