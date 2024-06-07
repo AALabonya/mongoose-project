@@ -5,6 +5,7 @@ import httpStatus from 'http-status';
 import { User } from '../users/user.model';
 import { TStudent } from './student.interfaces';
 import QueryBuilder from '../../builder/QueryBuilder';
+import { studentSearchableField } from './student.constant';
 
 const getAllStudentsFromDB = async (query: Record<string, unknown>) => {
   // const queryObj = { ...query }; //copy
@@ -60,7 +61,15 @@ const getAllStudentsFromDB = async (query: Record<string, unknown>) => {
   // const fieldQuery = await limitQuery.select(fields);
   // return fieldQuery;
 
-  const studentQuery = new QueryBuilder(Student.find(), query);
+  const studentQuery = new QueryBuilder(Student.find(), query)
+    .search(studentSearchableField)
+    .filter()
+    .sort()
+    .paginate()
+    .fields();
+
+  const result = await studentQuery.modelQuery;
+  return result;
 };
 
 const getSingleStudentFromDB = async (id: string) => {
