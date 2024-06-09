@@ -4,10 +4,23 @@ import catchAsync from '../../../utils/catchAsync';
 import sendResponse from '../../../utils/sendResponse';
 import { SemesterRegistrationServices } from './semesterRegistration.service';
 
+const createSemesterRegistration = catchAsync(async (req, res) => {
+  const result =
+    await SemesterRegistrationServices.createSemesterRegistrationIntoDB(
+      req.body,
+    );
+
+  sendResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: 'Course is created successfully',
+    data: result,
+  });
+});
 const getSingleSemesterRegistration = catchAsync(async (req, res) => {
   const { id } = req.params;
   const result =
-    await SemesterRegistrationServices.getSingleSemesterRegistrationFromDB(id);
+    await SemesterRegistrationServices.getSingleSemesterRegistrationIntoDB(id);
 
   sendResponse(res, {
     statusCode: httpStatus.OK,
@@ -19,7 +32,7 @@ const getSingleSemesterRegistration = catchAsync(async (req, res) => {
 
 const getAllSemesterRegistration = catchAsync(async (req, res) => {
   const result =
-    await SemesterRegistrationServices.getAllSemesterRegistrationFromDB(
+    await SemesterRegistrationServices.getAllSemesterRegistrationIntoDB(
       req.query,
     );
 
@@ -35,7 +48,7 @@ const updateSemesterRegistration = catchAsync(async (req, res) => {
   const { id } = req.params;
   const { faculty } = req.body;
   const result =
-    await SemesterRegistrationServices.updateSemesterRegistrationFromDB(
+    await SemesterRegistrationServices.updateSemesterRegistrationIntoDB(
       id,
       faculty,
     );
@@ -48,22 +61,9 @@ const updateSemesterRegistration = catchAsync(async (req, res) => {
   });
 });
 
-const deleteSemesterRegistration = catchAsync(async (req, res) => {
-  const { id } = req.params;
-  const result =
-    await SemesterRegistrationServices.deleteSemesterRegistrationFromDB(id);
-
-  sendResponse(res, {
-    statusCode: httpStatus.OK,
-    success: true,
-    message: 'Semester Registration is deleted successfully',
-    data: result,
-  });
-});
-
 export const SemesterRegistrationControllers = {
+  createSemesterRegistration,
   getAllSemesterRegistration,
   getSingleSemesterRegistration,
-  deleteSemesterRegistration,
   updateSemesterRegistration,
 };
