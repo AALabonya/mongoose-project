@@ -60,11 +60,16 @@ const createSemesterRegistrationIntoDB = async (
   return result;
 };
 const getAllSemesterRegistrationFromDB = async (
-  payload: Record<string, unknown>,
+  query: Record<string, unknown>,
 ) => {
   const semesterRegistrationQuery = new QueryBuilder(
-    SemesterRegistration.find().populate(''),
-  );
+    SemesterRegistration.find().populate('academicSemester'),
+    query,
+  )
+    .filter()
+    .sort()
+    .paginate()
+    .fields();
 };
 const getSingleSemesterRegistrationFromDB = async () => {};
 const updateSemesterRegistrationIntoDB = async () => {};
