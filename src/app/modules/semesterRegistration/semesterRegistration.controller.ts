@@ -42,9 +42,7 @@ const getSingleSemesterRegistration = catchAsync(
     const { id } = req.params;
 
     const result =
-      await SemesterRegistrationService.getSingleSemesterRegistrationsFromDB(
-        id,
-      );
+      await SemesterRegistrationService.getSingleSemesterRegistrationFromDB(id);
 
     sendResponse(res, {
       statusCode: httpStatus.OK,
