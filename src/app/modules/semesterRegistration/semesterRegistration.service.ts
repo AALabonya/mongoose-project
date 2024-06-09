@@ -4,6 +4,7 @@ import { TSemesterRegistration } from './semesterRegistration.interface';
 import { SemesterRegistration } from './semesterRegistration.model';
 import { AcademicSemester } from '../academicSemester/academicSemester.model';
 import QueryBuilder from '../../builder/QueryBuilder';
+import { RegistrationStatus } from './semesterRegistration.constant';
 
 const createSemesterRegistrationIntoDB = async (
   payload: TSemesterRegistration,
@@ -14,7 +15,21 @@ const createSemesterRegistrationIntoDB = async (
    * Step3: Check if the semester is already registered!
    * Step4: Create the semester registration
    */
+  //check if there any registered semester that is already 'UPCOMING'|'ONGOING'
+  const isThereAnyUpcomingOrOngoingSEmester =
+    await SemesterRegistration.findOne({
+      $or: [
+        { status: RegistrationStatus.UPCOMING },
+        { status: RegistrationStatus.ONGOING },
+      ],
+    });
 
+  if (isThereAnyUpcomingOrOngoingSEmester) {
+    throw new AppError(
+      httpStatus.BAD_REQUEST,
+      `There is aready an ${isThereAnyUpcomingOrOngoingSEmester.status} registered semester !`,
+    );
+  }
   const academicSemester = payload?.academicSemester;
   // check if the semester is exist
   const isAcademicSemesterExists =
@@ -37,21 +52,6 @@ const createSemesterRegistrationIntoDB = async (
       'This semester is already registered!',
     );
   }
-  //   //check if there any registered semester that is already 'UPCOMING'|'ONGOING'
-  //   const isThereAnyUpcomingOrOngoingSEmester =
-  //     await SemesterRegistration.findOne({
-  //       $or: [
-  //         { status: RegistrationStatus.UPCOMING },
-  //         { status: RegistrationStatus.ONGOING },
-  //       ],
-  //     });
-
-  //   if (isThereAnyUpcomingOrOngoingSEmester) {
-  //     throw new AppError(
-  //       httpStatus.BAD_REQUEST,
-  //       `There is aready an ${isThereAnyUpcomingOrOngoingSEmester.status} registered semester !`,
-  //     );
-  //   }
 
   const result = await SemesterRegistration.create(payload);
   return result;
@@ -77,7 +77,7 @@ const getSingleSemesterRegistrationFromDB = async (id: string) => {
 
   return result;
 };
-const updateSemesterRegistrationIntoDB = async () => {};
+const updateSemesterRegistrationIntoDB = async (id: string) => {};
 
 export const SemesterRegistrationService = {
   createSemesterRegistrationIntoDB,
