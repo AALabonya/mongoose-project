@@ -1,69 +1,93 @@
+import { Request, Response } from 'express';
 import httpStatus from 'http-status';
 
-import catchAsync from '../../../utils/catchAsync';
-import sendResponse from '../../../utils/sendResponse';
-import { SemesterRegistrationServices } from './semesterRegistration.service';
+const createSemesterRegistration = catchAsync(
+  async (req: Request, res: Response) => {
+    const result =
+      await SemesterRegistrationService.createSemesterRegistrationIntoDB(
+        req.body,
+      );
 
-const createSemesterRegistration = catchAsync(async (req, res) => {
-  const result =
-    await SemesterRegistrationServices.createSemesterRegistrationIntoDB(
-      req.body,
-    );
+    sendResponse(res, {
+      statusCode: httpStatus.OK,
+      success: true,
+      message: 'Semester Registration is created successfully!',
+      data: result,
+    });
+  },
+);
 
-  sendResponse(res, {
-    statusCode: httpStatus.OK,
-    success: true,
-    message: 'Course is created successfully',
-    data: result,
-  });
-});
-const getSingleSemesterRegistration = catchAsync(async (req, res) => {
-  const { id } = req.params;
-  const result =
-    await SemesterRegistrationServices.getSingleSemesterRegistrationIntoDB(id);
+const getAllSemesterRegistrations = catchAsync(
+  async (req: Request, res: Response) => {
+    const result =
+      await SemesterRegistrationService.getAllSemesterRegistrationsFromDB(
+        req.query,
+      );
 
-  sendResponse(res, {
-    statusCode: httpStatus.OK,
-    success: true,
-    message: 'Semester Registration is retrieved successfully',
-    data: result,
-  });
-});
+    sendResponse(res, {
+      statusCode: httpStatus.OK,
+      success: true,
+      message: 'Semester Registration is retrieved successfully !',
+      data: result,
+    });
+  },
+);
 
-const getAllSemesterRegistration = catchAsync(async (req, res) => {
-  const result =
-    await SemesterRegistrationServices.getAllSemesterRegistrationIntoDB(
-      req.query,
-    );
+const getSingleSemesterRegistration = catchAsync(
+  async (req: Request, res: Response) => {
+    const { id } = req.params;
 
-  sendResponse(res, {
-    statusCode: httpStatus.OK,
-    success: true,
-    message: 'Semester Registration are retrieved successfully',
-    data: result,
-  });
-});
+    const result =
+      await SemesterRegistrationService.getSingleSemesterRegistrationsFromDB(
+        id,
+      );
 
-const updateSemesterRegistration = catchAsync(async (req, res) => {
-  const { id } = req.params;
-  const { faculty } = req.body;
-  const result =
-    await SemesterRegistrationServices.updateSemesterRegistrationIntoDB(
-      id,
-      faculty,
-    );
+    sendResponse(res, {
+      statusCode: httpStatus.OK,
+      success: true,
+      message: 'Semester Registration is retrieved successfully',
+      data: result,
+    });
+  },
+);
 
-  sendResponse(res, {
-    statusCode: httpStatus.OK,
-    success: true,
-    message: 'Semester Registration is updated successfully',
-    data: result,
-  });
-});
+const updateSemesterRegistration = catchAsync(
+  async (req: Request, res: Response) => {
+    const { id } = req.params;
+    const result =
+      await SemesterRegistrationService.updateSemesterRegistrationIntoDB(
+        id,
+        req.body,
+      );
 
-export const SemesterRegistrationControllers = {
+    sendResponse(res, {
+      statusCode: httpStatus.OK,
+      success: true,
+      message: 'Semester Registration is updated successfully',
+      data: result,
+    });
+  },
+);
+
+const deleteSemesterRegistration = catchAsync(
+  async (req: Request, res: Response) => {
+    const { id } = req.params;
+    const result =
+      await SemesterRegistrationService.deleteSemesterRegistrationFromDB(id);
+
+    sendResponse(res, {
+      statusCode: httpStatus.OK,
+      success: true,
+      message: 'Semester Registration is updated successfully',
+      data: result,
+    });
+  },
+);
+
+export const SemesterRegistrationController = {
   createSemesterRegistration,
-  getAllSemesterRegistration,
+  getAllSemesterRegistrations,
   getSingleSemesterRegistration,
   updateSemesterRegistration,
+  deleteSemesterRegistration,
 };
