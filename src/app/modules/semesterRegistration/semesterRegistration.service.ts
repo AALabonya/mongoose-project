@@ -1,6 +1,5 @@
 import httpStatus from 'http-status';
 import AppError from '../../errors/AppError';
-import { RegistrationStatus } from './semesterRegistration.constant';
 import { TSemesterRegistration } from './semesterRegistration.interface';
 import { SemesterRegistration } from './semesterRegistration.model';
 import { AcademicSemester } from '../academicSemester/academicSemester.model';
@@ -17,22 +16,6 @@ const createSemesterRegistrationIntoDB = async (
    */
 
   const academicSemester = payload?.academicSemester;
-
-  //check if there any registered semester that is already 'UPCOMING'|'ONGOING'
-  const isThereAnyUpcomingOrOngoingSEmester =
-    await SemesterRegistration.findOne({
-      $or: [
-        { status: RegistrationStatus.UPCOMING },
-        { status: RegistrationStatus.ONGOING },
-      ],
-    });
-
-  if (isThereAnyUpcomingOrOngoingSEmester) {
-    throw new AppError(
-      httpStatus.BAD_REQUEST,
-      `There is aready an ${isThereAnyUpcomingOrOngoingSEmester.status} registered semester !`,
-    );
-  }
   // check if the semester is exist
   const isAcademicSemesterExists =
     await AcademicSemester.findById(academicSemester);
@@ -43,7 +26,6 @@ const createSemesterRegistrationIntoDB = async (
       'This academic semester not found !',
     );
   }
-
   // check if the semester is already registered!
   const isSemesterRegistrationExists = await SemesterRegistration.findOne({
     academicSemester,
@@ -55,10 +37,26 @@ const createSemesterRegistrationIntoDB = async (
       'This semester is already registered!',
     );
   }
+  //   //check if there any registered semester that is already 'UPCOMING'|'ONGOING'
+  //   const isThereAnyUpcomingOrOngoingSEmester =
+  //     await SemesterRegistration.findOne({
+  //       $or: [
+  //         { status: RegistrationStatus.UPCOMING },
+  //         { status: RegistrationStatus.ONGOING },
+  //       ],
+  //     });
+
+  //   if (isThereAnyUpcomingOrOngoingSEmester) {
+  //     throw new AppError(
+  //       httpStatus.BAD_REQUEST,
+  //       `There is aready an ${isThereAnyUpcomingOrOngoingSEmester.status} registered semester !`,
+  //     );
+  //   }
 
   const result = await SemesterRegistration.create(payload);
   return result;
 };
+
 const getAllSemesterRegistrationFromDB = async (
   query: Record<string, unknown>,
 ) => {
@@ -76,6 +74,7 @@ const getAllSemesterRegistrationFromDB = async (
 };
 const getSingleSemesterRegistrationFromDB = async (id: string) => {
   const result = await SemesterRegistration.findById(id);
+
   return result;
 };
 const updateSemesterRegistrationIntoDB = async () => {};

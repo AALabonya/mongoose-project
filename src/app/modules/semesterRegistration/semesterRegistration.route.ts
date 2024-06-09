@@ -22,15 +22,15 @@ router.get(
 router.patch(
   '/:id',
   validateRequest(
-    SemesterRegistrationValidations.upadateSemesterRegistrationValidationSchema,
+    SemesterRegistrationValidations.updateSemesterRegistrationValidationSchema,
   ),
   SemesterRegistrationController.updateSemesterRegistration,
 );
 
-router.get(
-  '/:id',
-  SemesterRegistrationController.getSingleSemesterRegistration,
-);
+// router.get(
+//   '/:id',
+//   SemesterRegistrationController.getSingleSemesterRegistration,
+// );
 
 // router.delete(
 //   '/:id',
