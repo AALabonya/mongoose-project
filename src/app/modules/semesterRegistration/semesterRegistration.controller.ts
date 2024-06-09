@@ -1,23 +1,27 @@
 import httpStatus from 'http-status';
 
-import { FacultyServices } from './faculty.service';
 import catchAsync from '../../../utils/catchAsync';
 import sendResponse from '../../../utils/sendResponse';
+import { SemesterRegistrationServices } from './semesterRegistration.service';
 
-const getSingleFaculty = catchAsync(async (req, res) => {
+const getSingleSemesterRegistration = catchAsync(async (req, res) => {
   const { id } = req.params;
-  const result = await FacultyServices.getSingleFacultyFromDB(id);
+  const result =
+    await SemesterRegistrationServices.getSingleSemesterRegistrationFromDB(id);
 
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: 'Faculty is retrieved successfully',
+    message: 'Semester Registration is retrieved successfully',
     data: result,
   });
 });
 
-const getAllFaculties = catchAsync(async (req, res) => {
-  const result = await FacultyServices.getAllFacultiesFromDB(req.query);
+const getAllSemesterRegistration = catchAsync(async (req, res) => {
+  const result =
+    await SemesterRegistrationServices.getAllSemesterRegistrationFromDB(
+      req.query,
+    );
 
   sendResponse(res, {
     statusCode: httpStatus.OK,
@@ -27,10 +31,14 @@ const getAllFaculties = catchAsync(async (req, res) => {
   });
 });
 
-const updateFaculty = catchAsync(async (req, res) => {
+const updateSemesterRegistration = catchAsync(async (req, res) => {
   const { id } = req.params;
   const { faculty } = req.body;
-  const result = await FacultyServices.updateFacultyIntoDB(id, faculty);
+  const result =
+    await SemesterRegistrationServices.updateSemesterRegistrationFromDB(
+      id,
+      faculty,
+    );
 
   sendResponse(res, {
     statusCode: httpStatus.OK,
@@ -40,9 +48,10 @@ const updateFaculty = catchAsync(async (req, res) => {
   });
 });
 
-const deleteFaculty = catchAsync(async (req, res) => {
+const deleteSemesterRegistration = catchAsync(async (req, res) => {
   const { id } = req.params;
-  const result = await FacultyServices.deleteFacultyFromDB(id);
+  const result =
+    await SemesterRegistrationServices.deleteSemesterRegistrationFromDB(id);
 
   sendResponse(res, {
     statusCode: httpStatus.OK,
@@ -53,8 +62,8 @@ const deleteFaculty = catchAsync(async (req, res) => {
 });
 
 export const FacultyControllers = {
-  getAllFaculties,
-  getSingleFaculty,
-  deleteFaculty,
-  updateFaculty,
+  getAllSemesterRegistration,
+  getSingleSemesterRegistration,
+  deleteSemesterRegistration,
+  updateSemesterRegistration,
 };
