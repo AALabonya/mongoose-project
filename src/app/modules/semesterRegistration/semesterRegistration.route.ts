@@ -1,6 +1,7 @@
 import express from 'express';
 import validateRequest from '../../middlwares/validateRequest';
 import { SemesterRegistrationValidations } from './semesterRegistration.validation';
+import { SemesterRegistrationControllers } from './semesterRegistration.controller';
 
 const router = express.Router();
 
@@ -11,28 +12,22 @@ router.post(
   ),
 );
 
-router.get('/:id', CourseControllers.getSingleCourse);
+router.get(
+  '/:id',
+  SemesterRegistrationControllers.getSingleSemesterRegistration,
+);
 
 router.patch(
   '/:id',
-  validateRequest(CourseValidations.updateCourseValidationSchema),
-  CourseControllers.updateCourse,
-);
-
-router.delete('/:id', CourseControllers.deleteCourse);
-
-router.put(
-  '/:courseId/assign-faculties',
-  validateRequest(CourseValidations.facultiesWithCourseValidationSchema),
-  CourseControllers.assignFacultiesWithCourse,
+  validateRequest(SemesterRegistrationValidations.updateCourseValidationSchema),
+  SemesterRegistrationControllers.updateSemesterRegistration,
 );
 
 router.delete(
-  '/:courseId/remove-faculties',
-  validateRequest(CourseValidations.facultiesWithCourseValidationSchema),
-  CourseControllers.removeFacultiesFromCourse,
+  '/:id',
+  SemesterRegistrationControllers.deleteSemesterRegistration,
 );
 
-router.get('/', CourseControllers.getAllCourses);
+router.get('/', SemesterRegistrationControllers.getAllSemesterRegistration);
 
 export const CourseRoutes = router;
