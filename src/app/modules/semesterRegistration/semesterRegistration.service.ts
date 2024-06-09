@@ -4,6 +4,7 @@ import { RegistrationStatus } from './semesterRegistration.constant';
 import { TSemesterRegistration } from './semesterRegistration.interface';
 import { SemesterRegistration } from './semesterRegistration.model';
 import { AcademicSemester } from '../academicSemester/academicSemester.model';
+import QueryBuilder from '../../builder/QueryBuilder';
 
 const createSemesterRegistrationIntoDB = async (
   payload: TSemesterRegistration,
@@ -58,7 +59,11 @@ const createSemesterRegistrationIntoDB = async (
   const result = await SemesterRegistration.create(payload);
   return result;
 };
-const getAllSemesterRegistrationFromDB = async () => {};
+const getAllSemesterRegistrationFromDB = async (
+  payload: Record<string, unknown>,
+) => {
+  const semesterRegistrationQuery = new QueryBuilder();
+};
 const getSingleSemesterRegistrationFromDB = async () => {};
 const updateSemesterRegistrationIntoDB = async () => {};
 
