@@ -32,10 +32,10 @@ router.get(
   SemesterRegistrationController.getSingleSemesterRegistration,
 );
 
-router.delete(
-  '/:id',
-  SemesterRegistrationController.deleteSemesterRegistration,
-);
+// router.delete(
+//   '/:id',
+//   SemesterRegistrationController.deleteSemesterRegistration,
+// );
 
 router.get('/', SemesterRegistrationController.getAllSemesterRegistrations);
 
