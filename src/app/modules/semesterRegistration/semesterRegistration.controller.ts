@@ -26,7 +26,7 @@ const getAllSemesterRegistration = catchAsync(async (req, res) => {
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: 'Faculties are retrieved successfully',
+    message: 'Semester Registration are retrieved successfully',
     data: result,
   });
 });
@@ -43,7 +43,7 @@ const updateSemesterRegistration = catchAsync(async (req, res) => {
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: 'Faculty is updated successfully',
+    message: 'Semester Registration is updated successfully',
     data: result,
   });
 });
@@ -56,7 +56,7 @@ const deleteSemesterRegistration = catchAsync(async (req, res) => {
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: 'Faculty is deleted successfully',
+    message: 'Semester Registration is deleted successfully',
     data: result,
   });
 });
