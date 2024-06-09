@@ -70,6 +70,9 @@ const getAllSemesterRegistrationFromDB = async (
     .sort()
     .paginate()
     .fields();
+
+  const result = await semesterRegistrationQuery.modelQuery;
+  return result;
 };
 const getSingleSemesterRegistrationFromDB = async () => {};
 const updateSemesterRegistrationIntoDB = async () => {};
