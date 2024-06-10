@@ -102,14 +102,14 @@ const updateSemesterRegistrationIntoDB = async (
   }
 
   //UPCOMING ---> ONGOING---> ENDED
-  if(currentRequesteSemesterStatus ==="UPCOMING" && requestedStatus === "ENDED"){
+  if(currentRequesteSemesterStatus ===RegistrationStatus.UPCOMING && requestedStatus === RegistrationStatus.ENDED){
     throw new AppError(
       httpStatus.NOT_FOUND,
       `You can not directly change status from ${currentRequesteSemesterStatus} to ${requestedStatus}`,
     );
   }
 
-  if(currentRequesteSemesterStatus ==="ONGOING" && requestedStatus === "UPCOMING"){
+  if(currentRequesteSemesterStatus === RegistrationStatus.ONGOING && requestedStatus === RegistrationStatus.UPCOMING){
     throw new AppError(
       httpStatus.NOT_FOUND,
       `You can not directly change status from ${currentRequesteSemesterStatus} to ${requestedStatus}`,
