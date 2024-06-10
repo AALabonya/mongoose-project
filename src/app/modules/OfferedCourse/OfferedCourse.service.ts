@@ -91,7 +91,7 @@ if (isSameOfferedCourseExistsWithSameRegisteredSemesterWithSameSection) {
 
 
 
-    const result =await OfferedCourse.create(payload)
+    const result =await OfferedCourse.create({...payload, academicSemester})
     return result
 }
 
