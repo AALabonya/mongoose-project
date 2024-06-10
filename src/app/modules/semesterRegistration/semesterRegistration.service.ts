@@ -85,14 +85,12 @@ const updateSemesterRegistrationIntoDB = async (
 ) => {
   //check if the requested registered semester is exists
   // check if the semester is already registered!
-  const isSemesterRegistrationExists = await SemesterRegistration.findById({
-    id,
-  });
+  const isSemesterRegistrationExists = await SemesterRegistration.findById(id);
 
   if (isSemesterRegistrationExists) {
     throw new AppError(
-      httpStatus.CONFLICT,
-      'This semester is already registered!',
+      httpStatus.NOT_FOUND,
+      'This semester is not found!',
     );
   }
   //if the requested semester registration is ended, we will not update anything
