@@ -109,6 +109,19 @@ const updateSemesterRegistrationIntoDB = async (
     );
   }
 
+  if(currentRequesteSemesterStatus ==="ONGOING" && requestedStatus === "UPCOMING"){
+    throw new AppError(
+      httpStatus.NOT_FOUND,
+      `You can not directly change status from ${currentRequesteSemesterStatus} to ${requestedStatus}`,
+    );
+  }
+
+  const result = await SemesterRegistration.findByIdAndUpdate(id, payload,{
+    new:true,
+    runValidators:true
+  })
+
+  return result
   }
 
 export const SemesterRegistrationService = {
