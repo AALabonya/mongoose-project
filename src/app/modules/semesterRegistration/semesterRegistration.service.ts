@@ -95,10 +95,10 @@ const updateSemesterRegistrationIntoDB = async (
   }
   //if the requested semester registration is ended, we will not update anything
 
-  const requesteSemesterStatus = isSemesterRegistrationExists?.status
+  const currentRequesteSemesterStatus = isSemesterRegistrationExists?.status
    
-  if(requesteSemesterStatus === 'ENDED'){
-    throw new AppError(httpStatus.BAD_REQUEST, `This semester is already ${requesteSemesterStatus}`)
+  if(currentRequesteSemesterStatus === 'ENDED'){
+    throw new AppError(httpStatus.BAD_REQUEST, `This semester is already ${currentRequesteSemesterStatus}`)
   }};
 
 export const SemesterRegistrationService = {
