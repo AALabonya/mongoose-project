@@ -86,7 +86,7 @@ const updateSemesterRegistrationIntoDB = async (
   //check if the requested registered semester is exists
   // check if the semester is already registered!
   const isSemesterRegistrationExists = await SemesterRegistration.findById(id);
-
+   const requestedStatus= payload?.status
   if (!isSemesterRegistrationExists) {
     throw new AppError(
       httpStatus.NOT_FOUND,
@@ -99,7 +99,17 @@ const updateSemesterRegistrationIntoDB = async (
    
   if(currentRequesteSemesterStatus === 'ENDED'){
     throw new AppError(httpStatus.BAD_REQUEST, `This semester is already ${currentRequesteSemesterStatus}`)
-  }};
+  }
+
+  //UPCOMING ---> ONGOING---> ENDED
+  if(currentRequesteSemesterStatus ==="UPCOMING" && requestedStatus === "ENDED"){
+    throw new AppError(
+      httpStatus.NOT_FOUND,
+      `You can not directly change status from ${currentRequesteSemesterStatus} to ${requestedStatus}`,
+    );
+  }
+
+  }
 
 export const SemesterRegistrationService = {
   createSemesterRegistrationIntoDB,
