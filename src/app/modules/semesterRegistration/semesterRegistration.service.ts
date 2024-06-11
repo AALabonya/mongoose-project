@@ -5,6 +5,8 @@ import { SemesterRegistration } from './semesterRegistration.model';
 import { AcademicSemester } from '../academicSemester/academicSemester.model';
 import QueryBuilder from '../../builder/QueryBuilder';
 import { RegistrationStatus } from './semesterRegistration.constant';
+import mongoose from 'mongoose';
+import { OfferedCourse } from '../OfferedCourse/OfferedCourse.model';
 
 const createSemesterRegistrationIntoDB = async (
   payload: TSemesterRegistration,
