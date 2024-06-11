@@ -8,6 +8,7 @@ import { AcademicDepartment } from "../academicDepartment/academicDepartment.mod
 import { Course } from "../Course/course.model";
 import { Faculty } from "../Faculty/faculty.model";
 import { hasTimeConflict } from "./OfferedCourse.utils";
+import QueryBuilder from "../../builder/QueryBuilder";
 
 const createOfferedCourseIntoDB=async(payload:TOfferedCourse)=>{
     const {
@@ -114,8 +115,13 @@ const assignedSchedules = await OfferedCourse.find({
     return result
 }
 
-const getAllOfferedCourses=async()=>{
-  const result =await OfferedCourse.find()
+const getAllOfferedCourses=async(query:Record<string, unknown>)=>{
+
+
+
+  const OfferedCourseQuery =new QueryBuilder(OfferedCourse.find(),query).filter().sort().paginate().fields()
+
+  const result =await OfferedCourseQuery.modelQuery
   return result
 }
 
@@ -123,5 +129,6 @@ const getAllOfferedCourses=async()=>{
 
 export const OfferedCourseServices = {
     createOfferedCourseIntoDB,
+    getAllOfferedCourses
     
   };
