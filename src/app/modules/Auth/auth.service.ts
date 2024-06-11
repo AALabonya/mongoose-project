@@ -1,10 +1,13 @@
+import { TLoginUser } from "./auth.interface";
 
-const createAuthIntoDB = async (payload: TAcademicFaculty) => {
-    const result = await AcademicFaculty.create(payload);
-    return result;
+const loginUser = async (payload:TLoginUser) => {
+console.log(payload);
+
+    // const result = await .create(payload);
+    // return result;
   };
 
   
 export const AuthServices = {
-    createAuthIntoDB
+    loginUser
   };
