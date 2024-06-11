@@ -2,7 +2,7 @@ import httpStatus from "http-status";
 import AppError from "../../errors/AppError";
 import { SemesterRegistration } from "../semesterRegistration/semesterRegistration.model";
 import { TOfferedCourse } from "./OfferedCourse.interface";
-import { OfferedCourse, OfferedCourse } from "./OfferedCourse.model";
+import { OfferedCourse } from "./OfferedCourse.model";
 import { AcademicFaculty } from "../academicFaculty/academicFaculty.model";
 import { AcademicDepartment } from "../academicDepartment/academicDepartment.model";
 import { Course } from "../Course/course.model";
