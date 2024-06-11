@@ -1,9 +1,10 @@
+import { Request, Response } from "express";
 import catchAsync from "../../../utils/catchAsync";
 
 const createAuth = catchAsync(async (req: Request, res: Response) => {
-    const result = await(
-      req.body,
-    );
+    // const result = await(
+    //   req.body,
+    // );
     // sendResponse(res, {
     //   statusCode: httpStatus.OK,
     //   success: true,
@@ -11,3 +12,7 @@ const createAuth = catchAsync(async (req: Request, res: Response) => {
     //   data: result,
     // });
   });
+
+  export const AuthControllers = {
+    createAuth
+  };
