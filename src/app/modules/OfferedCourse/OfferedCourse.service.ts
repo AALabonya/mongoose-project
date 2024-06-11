@@ -136,10 +136,11 @@ const getSingleOfferedCoursesInToDB = async(id:string)=>{
     return offeredCourse;
   };
   }
-}
+
 
 export const OfferedCourseServices = {
     createOfferedCourseIntoDB,
-    getAllOfferedCoursesInToDB
+    getAllOfferedCoursesInToDB,
+    getSingleOfferedCoursesInToDB
     
   };
