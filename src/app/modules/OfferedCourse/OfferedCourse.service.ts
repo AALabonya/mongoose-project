@@ -2,7 +2,7 @@ import httpStatus from "http-status";
 import AppError from "../../errors/AppError";
 import { SemesterRegistration } from "../semesterRegistration/semesterRegistration.model";
 import { TOfferedCourse } from "./OfferedCourse.interface";
-import { OfferedCourse } from "./OfferedCourse.model";
+import { OfferedCourse, OfferedCourse } from "./OfferedCourse.model";
 import { AcademicFaculty } from "../academicFaculty/academicFaculty.model";
 import { AcademicDepartment } from "../academicDepartment/academicDepartment.model";
 import { Course } from "../Course/course.model";
@@ -115,7 +115,7 @@ const assignedSchedules = await OfferedCourse.find({
     return result
 }
 
-const getAllOfferedCourses=async(query:Record<string, unknown>)=>{
+const getAllOfferedCoursesInToDB=async(query:Record<string, unknown>)=>{
 
 
 
@@ -125,10 +125,21 @@ const getAllOfferedCourses=async(query:Record<string, unknown>)=>{
   return result
 }
 
+const getSingleOfferedCoursesInToDB = async(id:string)=>{
+  const offeredCourse = await OfferedCourse.findById(id);
 
+  if(!offeredCourse){
+    if (!offeredCourse) {
+      throw new AppError(404, 'Offered Course not found');
+    }
+  
+    return offeredCourse;
+  };
+  }
+}
 
 export const OfferedCourseServices = {
     createOfferedCourseIntoDB,
-    getAllOfferedCourses
+    getAllOfferedCoursesInToDB
     
   };
