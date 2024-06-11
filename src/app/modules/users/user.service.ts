@@ -3,6 +3,7 @@ import httpStatus from 'http-status';
 import mongoose from 'mongoose';
 import config from '../../config';
 import AppError from '../../errors/AppError';
+import { TAdmin } from '../Admin/admin.interface';
 import { Admin } from '../Admin/admin.model';
 import { TFaculty } from '../Faculty/faculty.interface';
 import { Faculty } from '../Faculty/faculty.model';
@@ -13,11 +14,8 @@ import { AcademicSemester } from './../academicSemester/academicSemester.model';
 import { TUser } from './user.interface';
 import { User } from './user.model';
 import { TStudent } from '../student/student.interfaces';
-import {
-  generateAdminId,
-  generateFacultyId,
-  generateStudentId,
-} from './user.utiles';
+import { generateAdminId, generateFacultyId, generateStudentId } from './user.utiles';
+
 
 const createStudentIntoDB = async (password: string, payload: TStudent) => {
   // create a user object
@@ -131,7 +129,7 @@ const createFacultyIntoDB = async (password: string, payload: TFaculty) => {
   }
 };
 
-const createAdminIntoDB = async (password: string, payload: TFaculty) => {
+const createAdminIntoDB = async (password: string, payload: TAdmin) => {
   // create a user object
   const userData: Partial<TUser> = {};
 

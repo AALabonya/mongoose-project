@@ -5,6 +5,7 @@ import config from '../config';
 import AppError from '../errors/AppError';
 import catchAsync from '../../utils/catchAsync';
 import { User } from '../modules/users/user.model';
+import { TUserRole } from '../modules/users/user.interface';
 
 
 
@@ -26,7 +27,7 @@ const auth = (...requiredRoles: TUserRole[]) => {
     const { role, userId, iat } = decoded;
 
     // checking if the user is exist
-    const user = await User.isUserExistsByCustomId(userId);
+    const user = await User.(userId);
 
     if (!user) {
       throw new AppError(httpStatus.NOT_FOUND, 'This user is not found !');
