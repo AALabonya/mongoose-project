@@ -114,6 +114,12 @@ const assignedSchedules = await OfferedCourse.find({
     return result
 }
 
+const getAllOfferedCourses=async()=>{
+  const result =await OfferedCourse.find()
+  return result
+}
+
+
 
 export const OfferedCourseServices = {
     createOfferedCourseIntoDB,
