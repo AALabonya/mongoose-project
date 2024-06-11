@@ -127,6 +127,7 @@ const getAllOfferedCoursesInToDB=async(query:Record<string, unknown>)=>{
 
 const getSingleOfferedCoursesInToDB = async(id:string)=>{
   const offeredCourse = await OfferedCourse.findById(id);
+console.log(offeredCourse);
 
   if(!offeredCourse){
     if (!offeredCourse) {
