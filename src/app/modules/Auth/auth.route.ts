@@ -22,4 +22,4 @@ router.patch(
 
 router.delete('/:adminId', AdminControllers.deleteAdmin);
 
-export const AdminRoutes = router;
+export const AuthRoutes = router;
