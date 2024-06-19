@@ -14,8 +14,11 @@ import { AcademicSemester } from './../academicSemester/academicSemester.model';
 import { TUser } from './user.interface';
 import { User } from './user.model';
 import { TStudent } from '../student/student.interfaces';
-import { generateAdminId, generateFacultyId, generateStudentId } from './user.utiles';
-
+import {
+  generateAdminId,
+  generateFacultyId,
+  generateStudentId,
+} from './user.utiles';
 
 const createStudentIntoDB = async (password: string, payload: TStudent) => {
   // create a user object

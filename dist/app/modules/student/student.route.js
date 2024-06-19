@@ -6,7 +6,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.StudentRoutes = void 0;
 const express_1 = __importDefault(require("express"));
 const student_controllers_1 = require("./student.controllers");
+const validateRequest_1 = __importDefault(require("../../middlwares/validateRequest"));
+const student_validation_1 = require("./student.validation");
 const router = express_1.default.Router();
-//we call controller function
-router.post('/create-student', student_controllers_1.StudentControllers.createStudent);
+router.get('/:id', student_controllers_1.StudentControllers.getSingleStudent);
+router.patch('/:id', (0, validateRequest_1.default)(student_validation_1.updateStudentValidationSchema), student_controllers_1.StudentControllers.updateStudent);
+router.delete('/:id', student_controllers_1.StudentControllers.deleteStudent);
+router.get('/', student_controllers_1.StudentControllers.getAllStudents);
 exports.StudentRoutes = router;

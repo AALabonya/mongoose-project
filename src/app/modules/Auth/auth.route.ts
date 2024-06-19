@@ -1,7 +1,5 @@
 import express from 'express';
 
-
-
 import { AuthControllers } from './auth.controller';
 import { AuthValidation } from './auth.validation';
 import { USER_ROLE } from '../users/user.constant';

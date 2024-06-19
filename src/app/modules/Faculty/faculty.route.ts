@@ -18,6 +18,10 @@ router.patch(
 
 router.delete('/:id', FacultyControllers.deleteFaculty);
 
-router.get('/',auth(USER_ROLE.admin,USER_ROLE.faculty,USER_ROLE.student), FacultyControllers.getAllFaculties);
+router.get(
+  '/',
+  auth(USER_ROLE.admin, USER_ROLE.faculty, USER_ROLE.student),
+  FacultyControllers.getAllFaculties,
+);
 
 export const FacultyRoutes = router;
