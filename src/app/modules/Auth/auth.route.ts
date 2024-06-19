@@ -27,4 +27,5 @@ router.post(
   AuthControllers.refreshToken,
 );
 
+router.post('/forgatePassword', validateRequest(AuthValidation.forgatePasswordValidationSchema))
 export const AuthRoutes = router;

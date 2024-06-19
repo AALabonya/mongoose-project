@@ -33,4 +33,5 @@ export const AuthValidation = {
   loginValidationSchema,
   changePasswordValidationSchema,
   refreshTokenValidationSchema,
+  forgatePasswordValidationSchema
 };
