@@ -26,7 +26,7 @@ const refreshTokenValidationSchema = z.object({
 
 const forgatePasswordValidationSchema=z.object({
   body:z.object({
-    id:z.string()
+    id:z.string({required_error:'User id is required!'})
   })
 })
 export const AuthValidation = {
