@@ -6,7 +6,7 @@ import auth from '../../middlwares/auth';
 
 const router = express.Router();
 router.get(
-  '/:academicId',
+  '/:semesterId',
   AcademicsSemesterControllers.getSingleAcademicsSemester,
 );
 router.post(
@@ -24,10 +24,6 @@ router.patch(
   ),
   AcademicsSemesterControllers.updateAcademicSemester,
 );
-router.get(
-  '/',
-  auth('admin'),
-  AcademicsSemesterControllers.getAllAcademicsSemester,
-);
+router.get('/', AcademicsSemesterControllers.getAllAcademicsSemester);
 
 export const AcademicSemesterRoutes = router;

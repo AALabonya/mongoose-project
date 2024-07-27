@@ -17,26 +17,28 @@ const createAcademicsSemester = catchAsync(async (req, res) => {
 });
 
 const getAllAcademicsSemester = catchAsync(async (req, res) => {
-  const result = await AcademicSemesterServices.getAllAcademicsSemesterIntoBD();
-
+  const result = await AcademicSemesterServices.getAllAcademicsSemesterIntoBD(
+    req.query,
+  );
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: 'Student are retrieved succesfully',
-    data: result,
+    message: 'Academic semesters are retrieved successfully',
+    meta: result.meta,
+    data: result.result,
   });
 });
 
 const getSingleAcademicsSemester = catchAsync(async (req, res) => {
-  const { academicId } = req.params;
+  const { semesterId } = req.params;
 
   const result =
-    await AcademicSemesterServices.getSingleAcademicsSemesterIntoBD(academicId);
+    await AcademicSemesterServices.getSingleAcademicsSemesterIntoBD(semesterId);
 
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
-    message: 'Student are retrieved succesfully',
+    message: 'Academic Semester is retrieved succesfully',
     data: result,
   });
 });
