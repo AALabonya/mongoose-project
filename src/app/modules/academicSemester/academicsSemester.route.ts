@@ -2,7 +2,6 @@ import express from 'express';
 import { AcademicsSemesterControllers } from './academicsSemester.controllers';
 import { AcademicSemesterValidation } from './academicSemester.validation';
 import validateRequest from '../../middlwares/validateRequest';
-import auth from '../../middlwares/auth';
 
 const router = express.Router();
 router.get(
@@ -16,7 +15,6 @@ router.post(
   ),
   AcademicsSemesterControllers.createAcademicsSemester,
 );
-
 router.patch(
   '/:academicId',
   validateRequest(
