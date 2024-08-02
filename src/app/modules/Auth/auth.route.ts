@@ -30,5 +30,6 @@ router.post(
 router.post(
   '/forget-Password',
   validateRequest(AuthValidation.forGatePasswordValidationSchema),
+  AuthControllers.forgetPassword,
 );
 export const AuthRoutes = router;
