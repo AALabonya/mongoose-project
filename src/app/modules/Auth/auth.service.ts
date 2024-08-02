@@ -185,7 +185,18 @@ const forgetPassword = async (userId: string) => {
   if (userStatus === 'blocked') {
     throw new AppError(httpStatus.FORBIDDEN, 'This user is blocked ! !');
   }
-  const resetUILink = `http://localhost:3000?id={}`;
+  const jwtPayload = {
+    userId: user.id,
+    role: user.role,
+  };
+
+  const accessToken = createToken(
+    jwtPayload,
+    config.jwt_access_secret as string,
+    config.jwt_access_expires_in as string,
+  );
+
+  const resetUILink = `http://localhost:3000?id=${user.id}token${accessToken}`;
 };
 export const AuthServices = {
   loginUser,
