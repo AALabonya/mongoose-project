@@ -28,7 +28,7 @@ router.post(
 );
 
 router.post(
-  '/forgatePassword',
+  '/forget-Password',
   validateRequest(AuthValidation.forGatePasswordValidationSchema),
 );
 export const AuthRoutes = router;
