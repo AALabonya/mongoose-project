@@ -166,7 +166,21 @@ const refreshToken = async (token: string) => {
   };
 };
 
-const forgetPassword = async (id: string) => {};
+const forgetPassword = async (id: string) => {
+  // checking if the user is exist
+  const user = await User.isUserExistsByCustomId(userId);
+
+  if (!user) {
+    throw new AppError(httpStatus.NOT_FOUND, 'This user is not found !');
+  }
+  // checking if the user is already deleted
+  const isDeleted = user?.isDeleted;
+
+  if (isDeleted) {
+    throw new AppError(httpStatus.FORBIDDEN, 'This user is deleted !');
+  }
+  const resetUILink = `http://localhost:3000?id={}`;
+};
 export const AuthServices = {
   loginUser,
   changePassword,
